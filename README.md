@@ -56,7 +56,8 @@ require("wizard").setup({
     },
   },
 
-  -- Keymaps are bound to only normal mode by default.
+  -- Setup your keymaps.
+  -- NOTE keymaps are bound to only normal mode by default.
   keymaps = {
     -- Example: expressions and set keymap to multiple modes
     { "j", "v:count == 0 ? 'gj' : 'j'", "Down (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
@@ -79,9 +80,10 @@ require("wizard").setup({
   },
 
   -- Setup auto commands.
+  -- NOTE only callback functions are supported.
   autocmds = {
     {
-      "TextYankPost",
+      { "TextYankPost" },
       function()
         vim.hl.on_yank()
       end,
