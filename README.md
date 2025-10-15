@@ -5,9 +5,11 @@ Setup the things you need from a single `init.lua` file.
 ## Example
 
 ```lua
+-- Example: enable experimental loader for faster lua module loading.
 vim.loader.enable()
 
 require("wizard").setup({
+  -- Options that you would normally set with `vim.opt` or `vim.o`.
   options = {
     mouse = "a",
     number = true,
@@ -18,17 +20,27 @@ require("wizard").setup({
     scrolloff = 8,
   },
 
+  -- Options that you would normally set with `vim.g`.
   global_options = {
     mapleader = " ",
     loaded_netrw = 1,
     loaded_netrwPlugin = 1,
   },
 
+  -- Set the colorscheme.
+  -- Can come from a plugin, most of which you don't need to configure, but if
+  -- you need to you can add it to the plugins section below.
   colorscheme = "catppuccin",
 
+  -- List of plugins to setup.
+  -- NOTE that you do need a plugin manager for this to work. Personally I
+  -- use NixOS so I manage my Neovim plugins in there.
   plugins = {
     {
+      -- Plugin module name (that you would normally pass to `require`).
       "telescope",
+
+      -- Plugin options that are passed to the plugin's `setup` function.
       {
         defaults = {
           mappings = {
@@ -44,15 +56,19 @@ require("wizard").setup({
     },
   },
 
+  -- Keymaps are bound to only normal mode by default.
   keymaps = {
+    -- Example: expressions and set keymap to multiple modes
     { "j", "v:count == 0 ? 'gj' : 'j'", "Down (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
     { "k", "v:count == 0 ? 'gk' : 'k'", "Up (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
 
+    -- Example: commands
     { "<c-h>", "<cmd>tabprev<cr>", "Go to previous tab" },
     { "<c-l>", "<cmd>tabnext<cr>", "Go to next tab" },
     { "<c-t>", "<cmd>tabnew<cr>", "New tab" },
     { "<c-q>", "<cmd>tabclose<cr>", "Close tab" },
 
+    -- Example: functions (from plugins)
     { "<leader>d", require("telescope.builtin").diagnostics, "Diagnostics" },
     { "<leader>f", require("telescope.builtin").find_files, "Find file" },
     { "<leader>/", require("telescope.builtin").live_grep, "Grep content" },
@@ -62,6 +78,7 @@ require("wizard").setup({
     { "<leader>'", require("telescope.builtin").resume, "Resume last picker" },
   },
 
+  -- Setup auto commands.
   autocmds = {
     {
       "TextYankPost",
@@ -72,12 +89,17 @@ require("wizard").setup({
     },
   },
 
+  -- Configure diagnostics.
   diagnostics = {
     virtual_text = {
       current_line = true,
     },
   },
 
+  -- Setup language servers.
+  -- NOTE that you do need to install language servers yourself. Either with
+  -- a manager like Mason or manually. Personally I use NixOS so I manage my
+  -- language servers in there.
   lsp = {
     {
       "lua_ls",

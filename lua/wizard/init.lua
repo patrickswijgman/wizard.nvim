@@ -28,9 +28,9 @@ function M.setup(opts)
   setup_autocmds(opts.autocmds)
   setup_lsp(opts.lsp)
   setup_diagnostics(opts.diagnostics)
-  setup_colorscheme(opts.colorscheme)
   setup_plugins(opts.plugins)
   setup_keymaps(opts.keymaps)
+  setup_colorscheme(opts.colorscheme)
 end
 
 return M
