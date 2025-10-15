@@ -1,6 +1,6 @@
 # Wizard
 
-Setup the things you need from a single `init.lua` file.
+Setup the things (with some extras) you need from a single `init.lua` file.
 
 ## Example
 
@@ -104,7 +104,12 @@ require("wizard").setup({
   -- language servers in there.
   lsp = {
     {
+      -- Language server name.
+      -- If you've installed `nvim-lspconfig` you can find LSPs here:
+      -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
       "lua_ls",
+
+      -- Language server config.
       {
         settings = {
           Lua = {
@@ -120,14 +125,14 @@ require("wizard").setup({
           },
         },
 
-        -- Extra setting: Disable semantic tokens, in favor of e.g. Treesitter.
+        -- Extra: Disable semantic tokens, in favor of e.g. Treesitter.
         disable_semantic_tokens = true,
       },
     },
     {
       "biome",
       {
-        -- Extra setting: Execute these LSP code actions before buffer is written.
+        -- Extra: Execute these LSP code actions before buffer is written.
         code_actions_on_save = { "source.fixAll.biome", "source.organizeImports.biome" },
       },
     },
