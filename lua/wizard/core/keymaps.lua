@@ -9,6 +9,7 @@
 --- @field [3] string Description of the keymap.
 --- @field [4] wizard.KeymapOpts? Additional options for the keymap.
 
+--- @param keymap_list wizard.Keymap[] List of keymaps to set.
 return function(keymap_list)
   if not keymap_list then
     return
