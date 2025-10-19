@@ -40,7 +40,6 @@ require("wizard").setup({
     {
       -- Plugin module name (that you would normally pass to `require`).
       "telescope",
-
       -- Plugin options that are passed to the plugin's `setup` function.
       {
         defaults = {
@@ -63,13 +62,11 @@ require("wizard").setup({
     -- Example: expressions and set keymap to multiple modes
     { "j", "v:count == 0 ? 'gj' : 'j'", "Down (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
     { "k", "v:count == 0 ? 'gk' : 'k'", "Up (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
-
     -- Example: commands
     { "<c-h>", "<cmd>tabprev<cr>", "Go to previous tab" },
     { "<c-l>", "<cmd>tabnext<cr>", "Go to next tab" },
     { "<c-t>", "<cmd>tabnew<cr>", "New tab" },
     { "<c-q>", "<cmd>tabclose<cr>", "Close tab" },
-
     -- Example: functions (from plugins)
     { "<leader>d", require("telescope.builtin").diagnostics, "Diagnostics" },
     { "<leader>f", require("telescope.builtin").find_files, "Find file" },
