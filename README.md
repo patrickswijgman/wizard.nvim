@@ -98,14 +98,14 @@ require("wizard").setup({
     },
     virtual_text = {
       current_line = true,
+      -- Extra: Diagnostic icons for virtual text.
+      icons = {
+        [vim.diagnostic.severity.ERROR] = "󰅚",
+        [vim.diagnostic.severity.WARN] = "󰀪",
+        [vim.diagnostic.severity.INFO] = "󰋽",
+        [vim.diagnostic.severity.HINT] = "󰌶",
+      }
     },
-    -- Extra: Diagnostic icons for virtual and line text.
-    icons = {
-      [vim.diagnostic.severity.ERROR] = "󰅚",
-      [vim.diagnostic.severity.WARN] = "󰀪",
-      [vim.diagnostic.severity.INFO] = "󰋽",
-      [vim.diagnostic.severity.HINT] = "󰌶",
-    }
     -- Extra: Diagnostic icons for sign column.
     signs = {
       [vim.diagnostic.severity.ERROR] = "󰅚",

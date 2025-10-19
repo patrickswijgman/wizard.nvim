@@ -1,7 +1,7 @@
 --- @class wizard.LspConfig
 --- @field settings? table<string, any> LSP configuration.
 --- @field on_attach? fun(client: vim.lsp.Client, bufnr: number) Function to run when the LSP server attaches to a buffer.
---- @field code_actions_on_save? table<string> Code actions to run on save.
+--- @field code_actions_on_save? string[] Code actions to run on save.
 --- @field disable_semantic_tokens? boolean Whether or not to disable LSP semantic tokens, in favor of e.g. Treesitter.
 
 --- @class wizard.Lsp
@@ -21,7 +21,8 @@ return function(lsp_list)
     local config = lsp[2]
 
     if config then
-      vim.lsp.config(name, {
+      ---@type vim.lsp.Config
+      local lsp_config = {
         settings = config.settings,
         on_attach = function(client, bufnr)
           if config.disable_semantic_tokens then
@@ -41,7 +42,7 @@ return function(lsp_list)
               end,
               group = group,
               buffer = bufnr,
-              desc = "Execute code actions before buffer is written",
+              desc = string.format("Execute code actions before buffer is written (%s)", name),
             })
           end
 
@@ -49,7 +50,9 @@ return function(lsp_list)
             config.on_attach(client, bufnr)
           end
         end,
-      })
+      }
+
+      vim.lsp.config(name, lsp_config)
     end
 
     vim.lsp.enable(name)
