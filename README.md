@@ -4,12 +4,17 @@ Setup the things (with some extras) you need from a single `init.lua` file.
 
 ## Example
 
+> [!NOTE]
+> All options are optional, so only use what you need :)
+
 ```lua
--- Example: enable experimental loader for faster lua module loading.
 vim.loader.enable()
 
 require("wizard").setup({
-  -- Options that you would normally set with `vim.opt` or `vim.o`.
+  --------------------
+  -- Editor options --
+  --------------------
+
   options = {
     mouse = "a",
     number = true,
@@ -20,27 +25,30 @@ require("wizard").setup({
     scrolloff = 8,
   },
 
-  -- Options that you would normally set with `vim.g`.
   global_options = {
     mapleader = " ",
     loaded_netrw = 1,
     loaded_netrwPlugin = 1,
   },
 
-  -- Set the colorscheme.
+  -----------------
+  -- Colorscheme --
+  -----------------
+
   -- Can come from a plugin, most of which you don't need to configure, but if
   -- you need to you can add it to the plugins section below.
+
   colorscheme = "catppuccin",
 
-  -- List of plugins to setup.
-  -- NOTE that you do need a plugin manager for this to work. Personally I
-  -- use NixOS so I manage my Neovim plugins in there.
-  -- You can omit this option if you use something like Lazy to install and setup your plugins.
+  -------------
+  -- Plugins --
+  -------------
+
+  -- You can omit this option if you use e.g. Lazy to install and setup your plugins.
+
   plugins = {
     {
-      -- Plugin module name (that you would normally pass to `require`).
       "telescope",
-      -- Plugin options that are passed to the plugin's `setup` function.
       {
         defaults = {
           mappings = {
@@ -56,17 +64,23 @@ require("wizard").setup({
     },
   },
 
-  -- Setup your keymaps.
-  -- NOTE keymaps are bound to only (non-recursive) normal mode by default.
+  -------------
+  -- Keymaps --
+  -------------
+
+  -- By default keymaps are bound to (non-recursive) normal mode.
+
   keymaps = {
     -- Example: expressions and set keymap to multiple modes
     { "j", "v:count == 0 ? 'gj' : 'j'", "Down (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
     { "k", "v:count == 0 ? 'gk' : 'k'", "Up (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
+
     -- Example: commands
     { "<c-h>", "<cmd>tabprev<cr>", "Go to previous tab" },
     { "<c-l>", "<cmd>tabnext<cr>", "Go to next tab" },
     { "<c-t>", "<cmd>tabnew<cr>", "New tab" },
     { "<c-q>", "<cmd>tabclose<cr>", "Close tab" },
+
     -- Example: functions (from plugins)
     { "<leader>d", require("telescope.builtin").diagnostics, "Diagnostics" },
     { "<leader>f", require("telescope.builtin").find_files, "Find file" },
@@ -77,8 +91,12 @@ require("wizard").setup({
     { "<leader>'", require("telescope.builtin").resume, "Resume last picker" },
   },
 
-  -- Setup auto commands.
-  -- NOTE only callback functions are supported.
+  -------------------
+  -- Auto commands --
+  -------------------
+
+  -- Only callback functions are supported.
+
   autocmds = {
     {
       { "TextYankPost" },
@@ -89,62 +107,56 @@ require("wizard").setup({
     },
   },
 
-  -- Configure diagnostics.
+  -----------------
+  -- Diagnostics --
+  -----------------
+
+  -- `virtual_text` and `virtual_lines` can be configured at the same time or not
+  -- at all. But you'll most likely want to configure at least one of the two because
+  -- otherwise you will not get any diagnostics (Neovim default behavior since 0.11).
+
+  -- Omit the `severity` option to show on all severity levels.
+
   diagnostics = {
-    -- Options for the floating window when invoked with e.g. <C-w>d
     float = {
       border = "rounded",
     },
-    --- Configure virtual text to show diagnostic messages.
-    --- Omit this option to not use virtual text.
+
     virtual_text = {
-      -- Only show at the cursor.
       current_line = true,
-      -- Extra: Diagnostic icons for virtual text.
       icons = {
         [vim.diagnostic.severity.ERROR] = "󰅚",
         [vim.diagnostic.severity.WARN] = "󰀪",
         [vim.diagnostic.severity.INFO] = "󰋽",
         [vim.diagnostic.severity.HINT] = "󰌶",
       },
-      -- Only show virtual text for these severity levels.
-      -- NOTE omit this option to show for all levels.
       severity = {
         vim.diagnostic.severity.WARN,
         vim.diagnostic.severity.INFO,
         vim.diagnostic.severity.HINT,
       }
     },
-    --- Configure virtual lines to show diagnostic messages.
-    --- Omit this option to not use virtual lines.
+
     virtual_lines = {
-      -- Always show.
       current_line = false,
-      -- Extra: Diagnostic icons for virtual lines.
       icons = {
         [vim.diagnostic.severity.ERROR] = "󰅚",
         [vim.diagnostic.severity.WARN] = "󰀪",
         [vim.diagnostic.severity.INFO] = "󰋽",
         [vim.diagnostic.severity.HINT] = "󰌶",
       },
-      -- Only show virtual lines for these severity levels.
-      -- NOTE omit this option to show for all levels.
       severity = {
         vim.diagnostic.severity.ERROR,
       }
     },
-    --- Configure the sign column to show diagnostic icons.
-    --- Omit this option to not change sign column diagnostic settings.
+
     signs = {
-      -- Extra: Diagnostic icons for the sign column.
       icons = {
         [vim.diagnostic.severity.ERROR] = "󰅚",
         [vim.diagnostic.severity.WARN] = "󰀪",
         [vim.diagnostic.severity.INFO] = "",
         [vim.diagnostic.severity.HINT] = "",
       },
-      -- Only show signs for these severity levels.
-      -- NOTE omit this option to show for all levels.
       severity = {
         vim.diagnostic.severity.ERROR,
         vim.diagnostic.severity.WARN,
@@ -152,17 +164,17 @@ require("wizard").setup({
     },
   },
 
-  -- Setup language servers.
-  -- NOTE that you do need to install language servers yourself. Either with
-  -- a manager like Mason or manually. Personally I use NixOS so I manage my
-  -- language servers in there.
+  ----------------------------
+  -- Language servers (LSP) --
+  ----------------------------
+
+  -- You can omit this option if you use e.g. Mason to download and setup your LSP.
+
+  -- If you use `nvim-lspconfig` you can find LSPs here https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+
   lsp = {
     {
-      -- Language server name.
-      -- If you've installed `nvim-lspconfig` you can find LSPs here:
-      -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
       "lua_ls",
-      -- Language server config.
       {
         settings = {
           Lua = {
@@ -177,14 +189,20 @@ require("wizard").setup({
             },
           },
         },
-        -- Extra: Disable semantic tokens, in favor of e.g. Treesitter.
+
+        -- If you use Treesitter you might want to disable semantic tokens for
+        -- language servers that use them to prevent race conditions.
         disable_semantic_tokens = true,
+
+        on_attach = function(client, bufnr)
+          print("hello")
+        end
       },
     },
     {
       "biome",
       {
-        -- Extra: Execute these LSP code actions before buffer is written.
+        -- Execute these LSP code actions before buffer is written.
         code_actions_on_save = { "source.fixAll.biome", "source.organizeImports.biome" },
       },
     },
