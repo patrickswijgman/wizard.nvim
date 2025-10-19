@@ -35,7 +35,7 @@ require("wizard").setup({
   -- List of plugins to setup.
   -- NOTE that you do need a plugin manager for this to work. Personally I
   -- use NixOS so I manage my Neovim plugins in there.
-  -- You can omit this option if you use something like Lazy to install your plugins.
+  -- You can omit this option if you use something like Lazy to install and setup your plugins.
   plugins = {
     {
       -- Plugin module name (that you would normally pass to `require`).
