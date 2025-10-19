@@ -35,6 +35,7 @@ require("wizard").setup({
   -- List of plugins to setup.
   -- NOTE that you do need a plugin manager for this to work. Personally I
   -- use NixOS so I manage my Neovim plugins in there.
+  -- You can omit this option if you use something like Lazy to install your plugins.
   plugins = {
     {
       -- Plugin module name (that you would normally pass to `require`).
@@ -57,7 +58,7 @@ require("wizard").setup({
   },
 
   -- Setup your keymaps.
-  -- NOTE keymaps are bound to only normal mode by default.
+  -- NOTE keymaps are bound to only (non-recursive) normal mode by default.
   keymaps = {
     -- Example: expressions and set keymap to multiple modes
     { "j", "v:count == 0 ? 'gj' : 'j'", "Down (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
