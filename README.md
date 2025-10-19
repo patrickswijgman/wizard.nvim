@@ -97,6 +97,8 @@ require("wizard").setup({
     float = {
       border = "rounded",
     },
+    --- Configure virtual text to show diagnostic messages.
+    --- Omit this option to not use virtual text.
     virtual_text = {
       -- Only show at the cursor.
       current_line = true,
@@ -115,6 +117,8 @@ require("wizard").setup({
         vim.diagnostic.severity.HINT,
       }
     },
+    --- Configure virtual lines to show diagnostic messages.
+    --- Omit this option to not use virtual lines.
     virtual_lines = {
       -- Always show.
       current_line = false,
@@ -131,6 +135,8 @@ require("wizard").setup({
         vim.diagnostic.severity.ERROR,
       }
     },
+    --- Configure the sign column to show diagnostic icons.
+    --- Omit this option to not change sign column diagnostic settings.
     signs = {
       -- Extra: Diagnostic icons for the sign column.
       icons = {
