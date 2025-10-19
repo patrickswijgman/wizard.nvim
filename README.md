@@ -93,10 +93,12 @@ require("wizard").setup({
 
   -- Configure diagnostics.
   diagnostics = {
+    -- Options for the floating window when invoked with e.g. <C-w>d
     float = {
       border = "rounded",
     },
     virtual_text = {
+      -- Only show at the cursor.
       current_line = true,
       -- Extra: Diagnostic icons for virtual text.
       icons = {
@@ -104,14 +106,45 @@ require("wizard").setup({
         [vim.diagnostic.severity.WARN] = "󰀪",
         [vim.diagnostic.severity.INFO] = "󰋽",
         [vim.diagnostic.severity.HINT] = "󰌶",
+      },
+      -- Only show virtual text for these severity levels.
+      -- NOTE omit this option to show for all levels.
+      severity = {
+        vim.diagnostic.severity.WARN,
+        vim.diagnostic.severity.INFO,
+        vim.diagnostic.severity.HINT,
       }
     },
-    -- Extra: Diagnostic icons for sign column.
+    virtual_lines = {
+      -- Always show.
+      current_line = false,
+      -- Extra: Diagnostic icons for virtual lines.
+      icons = {
+        [vim.diagnostic.severity.ERROR] = "󰅚",
+        [vim.diagnostic.severity.WARN] = "󰀪",
+        [vim.diagnostic.severity.INFO] = "󰋽",
+        [vim.diagnostic.severity.HINT] = "󰌶",
+      },
+      -- Only show virtual lines for these severity levels.
+      -- NOTE omit this option to show for all levels.
+      severity = {
+        vim.diagnostic.severity.ERROR,
+      }
+    },
     signs = {
-      [vim.diagnostic.severity.ERROR] = "󰅚",
-      [vim.diagnostic.severity.WARN] = "󰀪",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
+      -- Extra: Diagnostic icons for the sign column.
+      icons = {
+        [vim.diagnostic.severity.ERROR] = "󰅚",
+        [vim.diagnostic.severity.WARN] = "󰀪",
+        [vim.diagnostic.severity.INFO] = "",
+        [vim.diagnostic.severity.HINT] = "",
+      },
+      -- Only show signs for these severity levels.
+      -- NOTE omit this option to show for all levels.
+      severity = {
+        vim.diagnostic.severity.ERROR,
+        vim.diagnostic.severity.WARN,
+      },
     },
   },
 
