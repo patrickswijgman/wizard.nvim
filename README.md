@@ -93,8 +93,25 @@ require("wizard").setup({
 
   -- Configure diagnostics.
   diagnostics = {
+    float = {
+      border = "rounded",
+    },
     virtual_text = {
       current_line = true,
+    },
+    -- Extra: Diagnostic icons for virtual and line text.
+    icons = {
+      [vim.diagnostic.severity.ERROR] = "󰅚",
+      [vim.diagnostic.severity.WARN] = "󰀪",
+      [vim.diagnostic.severity.INFO] = "󰋽",
+      [vim.diagnostic.severity.HINT] = "󰌶",
+    }
+    -- Extra: Diagnostic icons for sign column.
+    signs = {
+      [vim.diagnostic.severity.ERROR] = "󰅚",
+      [vim.diagnostic.severity.WARN] = "󰀪",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
     },
   },
 
@@ -108,7 +125,6 @@ require("wizard").setup({
       -- If you've installed `nvim-lspconfig` you can find LSPs here:
       -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
       "lua_ls",
-
       -- Language server config.
       {
         settings = {
@@ -124,7 +140,6 @@ require("wizard").setup({
             },
           },
         },
-
         -- Extra: Disable semantic tokens, in favor of e.g. Treesitter.
         disable_semantic_tokens = true,
       },
