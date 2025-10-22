@@ -82,13 +82,13 @@ require("wizard").setup({
     { "n", "<c-q>", "<cmd>tabclose<cr>" },
 
     -- Example: Functions (from plugins).
-    { "<leader>d", require("telescope.builtin").diagnostics },
-    { "<leader>f", require("telescope.builtin").find_files },
-    { "<leader>/", require("telescope.builtin").live_grep },
-    { "<leader>?", require("telescope.builtin").grep_string },
-    { "<leader>b", require("telescope.builtin").buffers },
-    { "<leader>h", require("telescope.builtin").help_tags },
-    { "<leader>'", require("telescope.builtin").resume },
+    { "n", "<leader>d", require("telescope.builtin").diagnostics },
+    { "n", "<leader>f", require("telescope.builtin").find_files },
+    { "n", "<leader>/", require("telescope.builtin").live_grep },
+    { "n", "<leader>?", require("telescope.builtin").grep_string },
+    { "n", "<leader>b", require("telescope.builtin").buffers },
+    { "n", "<leader>h", require("telescope.builtin").help_tags },
+    { "n", "<leader>'", require("telescope.builtin").resume },
   },
 
   -------------------
