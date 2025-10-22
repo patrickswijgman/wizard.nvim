@@ -207,8 +207,10 @@ require("wizard").setup({
   -- See `:h vim.filetype` for more information about filetype configuration.
 
   filetypes = {
-    -- Example: associate all .env files with the 'properties' filetype.
-    [".*%.env.*""] = "properties"
+    pattern = {
+      -- Example: associate all .env files with the 'properties' filetype.
+      [".*%.env.*""] = "properties"
+    }
   }
 })
 ```
