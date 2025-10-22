@@ -212,7 +212,7 @@ require("wizard").setup({
   filetypes = {
     pattern = {
       -- Example: associate all .env files with the 'properties' filetype.
-      [".*%.env.*""] = "properties"
+      [".*%.env.*"] = "properties"
     }
   }
 })
