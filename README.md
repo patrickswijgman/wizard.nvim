@@ -68,27 +68,27 @@ require("wizard").setup({
   -- Keymaps --
   -------------
 
-  -- By default keymaps are bound to (non-recursive) normal mode.
+  -- See `:h vim.keymap.set()` for more information about keymap configuration.
 
   keymaps = {
-    -- Example: expressions and set keymap to multiple modes
-    { "j", "v:count == 0 ? 'gj' : 'j'", "Down (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
-    { "k", "v:count == 0 ? 'gk' : 'k'", "Up (including wrapped lines)", { mode = { "n", "x" }, expression = true } },
+    -- Example: Vim expressions and set keymap to multiple modes.
+    { { "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down (including wrapped lines)", expr = true } },
+    { { "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc ="Up (including wrapped lines)", expr = true } },
 
-    -- Example: commands
-    { "<c-h>", "<cmd>tabprev<cr>", "Go to previous tab" },
-    { "<c-l>", "<cmd>tabnext<cr>", "Go to next tab" },
-    { "<c-t>", "<cmd>tabnew<cr>", "New tab" },
-    { "<c-q>", "<cmd>tabclose<cr>", "Close tab" },
+    -- Example: Commands.
+    { "n", "<c-h>", "<cmd>tabprev<cr>" },
+    { "n", "<c-l>", "<cmd>tabnext<cr>" },
+    { "n", "<c-t>", "<cmd>tabnew<cr>" },
+    { "n", "<c-q>", "<cmd>tabclose<cr>" },
 
-    -- Example: functions (from plugins)
-    { "<leader>d", require("telescope.builtin").diagnostics, "Diagnostics" },
-    { "<leader>f", require("telescope.builtin").find_files, "Find file" },
-    { "<leader>/", require("telescope.builtin").live_grep, "Grep content" },
-    { "<leader>?", require("telescope.builtin").grep_string, "Grep word under cursor" },
-    { "<leader>b", require("telescope.builtin").buffers, "Find buffer" },
-    { "<leader>h", require("telescope.builtin").help_tags, "Find help" },
-    { "<leader>'", require("telescope.builtin").resume, "Resume last picker" },
+    -- Example: Functions (from plugins).
+    { "<leader>d", require("telescope.builtin").diagnostics },
+    { "<leader>f", require("telescope.builtin").find_files },
+    { "<leader>/", require("telescope.builtin").live_grep },
+    { "<leader>?", require("telescope.builtin").grep_string },
+    { "<leader>b", require("telescope.builtin").buffers },
+    { "<leader>h", require("telescope.builtin").help_tags },
+    { "<leader>'", require("telescope.builtin").resume },
   },
 
   -------------------
