@@ -73,7 +73,7 @@ require("wizard").setup({
   keymaps = {
     -- Example: Vim expressions and set keymap to multiple modes.
     { { "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down (including wrapped lines)", expr = true } },
-    { { "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc ="Up (including wrapped lines)", expr = true } },
+    { { "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up (including wrapped lines)", expr = true } },
 
     -- Example: Commands.
     { "n", "<c-h>", "<cmd>tabprev<cr>" },
