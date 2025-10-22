@@ -48,6 +48,7 @@ require("wizard").setup({
 
   plugins = {
     {
+      -- Example: Setup the Telescope plugin and its options.
       "telescope",
       {
         defaults = {
@@ -166,6 +167,8 @@ require("wizard").setup({
   ----------------------------
 
   -- You can omit this option if you use e.g. Mason to download and setup your LSP.
+  -- However you can still enable and configure LSPs here if you only use Mason
+  -- to download the language servers.
 
   -- If you use `nvim-lspconfig` you can find LSPs here https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 
