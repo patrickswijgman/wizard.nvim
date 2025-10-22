@@ -27,6 +27,7 @@ local M = {}
 --- @field diagnostics? vim.diagnostic.Opts Diagnostic options.
 --- @field colorscheme? string Colorscheme to set.
 --- @field plugins? wizard.Plugin[] Plugins to load and configure.
+--- @field filetypes? vim.filetype.add.filetypes Filetype associations to set.
 
 --- @param opts wizard.Opts
 function M.setup(opts)
@@ -78,6 +79,10 @@ function M.setup(opts)
     local config = keymap[4]
 
     vim.keymap.set(mode, lhs, rhs, config)
+  end
+
+  if opts.filetypes then
+    vim.filetype.add(opts.filetypes)
   end
 end
 
